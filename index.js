@@ -1,11 +1,14 @@
 'use strict'
-
+var cors = require("cors");
 const repoContext = require("./repository/repository-wrapper.js");
 const express = require('express');
 const { movies } = require("./repository/json-context.js");
+const validators = require("./validators/custom-validations.js");
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => validators.body(req, res, next));
 
 app.listen(3000, function() {
     console.log('Server started. Listening on port 3000.');
@@ -14,23 +17,23 @@ app.listen(3000, function() {
 app.get("/api/movies/:id", (req, res) => {
     let id = req.params.id;
     let movies = repoContext.movies.findAllMovies();
-    res.send(movies);
+    res.send(movies, id);
 });
 
-app.post("/api/movies", (req, res) => {
+app.post("/api/movies/:id", (req, res) => {
     let newMovie = req.body;
-    let addedMovies = repoContext.movies.createProduct(newMovie);
+    let addedMovies = repoContext.movies.createMovie(newMovie);
     res.send(addedMovies);
 });
 
-app.put("/api/products", (req, res) => {
+app.put("/api/movies", (req, res) => {
     let productToUpdate = req.body;
-    let updatedProduct = repoContext.products.updateProduct(productToUpdate);
-    res.send(updatedProduct);
+    let updatedMovie = repoContext.movies.updateMovie(productToUpdate);
+    res.send(updatedMovie);
 });
 
-app.delete("/api/products/:id", (req, res) => {
+app.delete("/api/movies/:id", (req, res) => {
     let id = req.params.id;
-    let updatedDataSet = repoContext.products.deleteProduct(id);
+    let updatedDataSet = repoContext.movies.deleteMovie(id);
     res.send(updatedDataSet);
 });
