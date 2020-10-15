@@ -5,7 +5,6 @@ const express = require('express');
 const { movies } = require("./repository/json-context.js");
 const validators = require("./validators/custom-validations.js");
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => validators.body(req, res, next));
@@ -13,7 +12,6 @@ app.use((req, res, next) => validators.body(req, res, next));
 app.listen(3000, function() {
     console.log('Server started. Listening on port 3000.');
 });
-
 
 app.get("/api/movies", (req, res) => {
     let id = req.params.id;
@@ -27,31 +25,33 @@ app.get("/api/movies/:id", (req, res) => {
     res.send(movies);
 });
 
-app.post("/api/movies/:genre", (req, res) => {
-    let genre = req.params.body;
-    let movies = repoContext.movies.findMovieByGenre(genre);
-    res.send(movies);
-});
-app.post("/api/movies/:director", (req, res) => {
-    let director = req.params.body;
-    let movies = repoContext.movies.findMovieByDirector(director);
-    res.send(movies);
-});
-app.post("/api/movies/:title", (req, res) => {
-    let title = req.params.body;
-    let movies = repoContext.movies.findMovieByTitle(title);
-    res.send(movies);
-});
+// app.get("/api/movies/:genre", (req, res) => {
+//     let genre = req.params.body;
+//     let movies = repoContext.movies.findMovieByGenre(genre);
+//     res.send(movies);
+// });
 
-app.post("/api/movies", (req, res) => {
+//app.get("/api/movies/:director", (req, res) => {
+// let director = req.params.body;
+// let movies = repoContext.movies.findMovieByDirector(director);
+// res.send(movies);
+//});
+
+//app.get("/api/movies/:title", (req, res) => {
+// let title = req.params.body;
+// let movies = repoContext.movies.findMovieByTitle(title);
+// res.send(movies);
+//});
+
+app.post("/api/movies/add", (req, res) => {
     let newMovie = req.body;
     let addedMovies = repoContext.movies.createMovie(newMovie);
     res.send(addedMovies);
 });
 
-app.put("/api/movies", (req, res) => {
-    let moviesToUpdate = req.body;
-    let updatedMovie = repoContext.movies.updateMovie(moviesToUpdate);
+app.put("/api/movies/", (req, res) => {
+    let movieToUpdate = req.body;
+    let updatedMovie = repoContext.movies.updateMovie(movieToUpdate);
     res.send(updatedMovie);
 });
 

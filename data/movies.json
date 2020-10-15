@@ -13,19 +13,19 @@
   },
   {
     "id": 3,
-    "title": "Inception",
-    "director": "Christopher Nolan",
-    "genre": "Drama"
-  },
-  {
-    "id": 4,
     "title": "Pineapple Express",
     "director": "David Gordon Green",
     "genre": "Comedy"
   },
   {
-    "id": 5,
+    "id": 4,
     "title": "Die Hard",
+    "director": "John McTiernan",
+    "genre": "Action"
+  },
+  {
+    "id": 5,
+    "title": "Die Hard 2",
     "director": "John McTiernan",
     "genre": "Action"
   }
