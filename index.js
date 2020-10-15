@@ -5,12 +5,6 @@ const express = require('express');
 const { movies } = require("./repository/json-context.js");
 const validators = require("./validators/custom-validations.js");
 const app = express();
-<<<<<<< HEAD
-var cors = require("cors");
-
-=======
-app.use(cors());
->>>>>>> e89f14d62cd18b93936360b70c1b2557cd3e50ee
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => validators.body(req, res, next));
@@ -28,19 +22,24 @@ app.get("/api/movies", (req, res) => {
 
 app.get("/api/movies/:id", (req, res) => {
     let id = req.params.id;
-<<<<<<< HEAD
     let movies = repoContext.movies.findMovieById(id);
     res.send(movies);
 });
 
-app.get("/api/movies/genre/:genre", (req, res) => {
+app.post("/api/movies/:genre", (req, res) => {
     let genre = req.params.body;
     let movies = repoContext.movies.findAllMoviesByGenre(genre);
     res.send(movies);
-=======
-    let movies = repoContext.movies.findAllMovies();
-    res.send(movies, id);
->>>>>>> e89f14d62cd18b93936360b70c1b2557cd3e50ee
+});
+app.post("/api/movies/:director", (req, res) => {
+    let director = req.params.body;
+    let movies = repoContext.movies.findAllMoviesByGenre(director);
+    res.send(movies);
+});
+app.post("/api/movies/:title", (req, res) => {
+    let title = req.params.body;
+    let movies = repoContext.movies.findAllMoviesByGenre(title);
+    res.send(movies);
 });
 
 app.post("/api/movies/:id", (req, res) => {
