@@ -28,17 +28,17 @@ app.get("/api/movies/:id", (req, res) => {
 
 app.post("/api/movies/:genre", (req, res) => {
     let genre = req.params.body;
-    let movies = repoContext.movies.findAllMoviesByGenre(genre);
+    let movies = repoContext.movies.findMovieByGenre(genre);
     res.send(movies);
 });
 app.post("/api/movies/:director", (req, res) => {
     let director = req.params.body;
-    let movies = repoContext.movies.findAllMoviesByDirector(director);
+    let movies = repoContext.movies.findMovieByDirector(director);
     res.send(movies);
 });
 app.post("/api/movies/:title", (req, res) => {
     let title = req.params.body;
-    let movies = repoContext.movies.findAllMoviesByTitle(title);
+    let movies = repoContext.movies.findMovieByTitle(title);
     res.send(movies);
 });
 
