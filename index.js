@@ -33,12 +33,12 @@ app.post("/api/movies/:genre", (req, res) => {
 });
 app.post("/api/movies/:director", (req, res) => {
     let director = req.params.body;
-    let movies = repoContext.movies.findAllMoviesByGenre(director);
+    let movies = repoContext.movies.findAllMoviesByDirector(director);
     res.send(movies);
 });
 app.post("/api/movies/:title", (req, res) => {
     let title = req.params.body;
-    let movies = repoContext.movies.findAllMoviesByGenre(title);
+    let movies = repoContext.movies.findAllMoviesByTitle(title);
     res.send(movies);
 });
 
