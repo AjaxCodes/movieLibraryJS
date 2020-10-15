@@ -4,6 +4,8 @@ const repoContext = require("./repository/repository-wrapper.js");
 const express = require('express');
 const { movies } = require("./repository/json-context.js");
 const app = express();
+var cors = require("cors");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -11,26 +13,39 @@ app.listen(3000, function() {
     console.log('Server started. Listening on port 3000.');
 });
 
+
+app.get("/api/movies", (req, res) => {
+    let id = req.params.id;
+    let movies = repoContext.movies.findAllMovies(id);
+    res.send(movies);
+});
+
 app.get("/api/movies/:id", (req, res) => {
     let id = req.params.id;
-    let movies = repoContext.movies.findAllMovies();
+    let movies = repoContext.movies.findMovieById(id);
+    res.send(movies);
+});
+
+app.get("/api/movies/genre/:genre", (req, res) => {
+    let genre = req.params.body;
+    let movies = repoContext.movies.findAllMoviesByGenre(genre);
     res.send(movies);
 });
 
 app.post("/api/movies", (req, res) => {
     let newMovie = req.body;
-    let addedMovies = repoContext.movies.createProduct(newMovie);
+    let addedMovies = repoContext.movies.createMovie(newMovie);
     res.send(addedMovies);
 });
 
-app.put("/api/products", (req, res) => {
+app.put("/api/movies", (req, res) => {
     let productToUpdate = req.body;
-    let updatedProduct = repoContext.products.updateProduct(productToUpdate);
-    res.send(updatedProduct);
+    let updatedMovie = repoContext.movies.updateMovie(productToUpdate);
+    res.send(updatedMovie);
 });
 
-app.delete("/api/products/:id", (req, res) => {
+app.delete("/api/movies/:id", (req, res) => {
     let id = req.params.id;
-    let updatedDataSet = repoContext.products.deleteProduct(id);
+    let updatedDataSet = repoContext.movies.deleteMovie(id);
     res.send(updatedDataSet);
 });
