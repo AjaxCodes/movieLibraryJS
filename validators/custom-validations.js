@@ -32,7 +32,7 @@ exports.body = (req, res, next) => {
         ) {
             next();
         }
-    else {
+        else {
             res.status(400).send({
                 error: { status: 400, description: "Invalid object format." },
             });

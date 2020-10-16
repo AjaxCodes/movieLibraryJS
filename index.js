@@ -1,13 +1,14 @@
 'use strict'
-var cors = require("cors");
-const repoContext = require("./repository/repository-wrapper.js");
+var cors = require('cors');
+const repoContext = require('./repository/repository-wrapper.js');
 const express = require('express');
-const { movies } = require("./repository/json-context.js");
-const validators = require("./validators/custom-validations.js");
+const validators = require('./validators/custom-validations.js');
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => validators.body(req, res, next));
+
 
 app.listen(3000, function() {
     console.log('Server started. Listening on port 3000.');
