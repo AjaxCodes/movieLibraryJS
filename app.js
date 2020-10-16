@@ -1,10 +1,9 @@
 'use strict'
-// all ajax call from api
 function getAllMovies(){
     $.ajax({
         url: 'http://localhost:3000/api/movies',
         dataType:"json",
-        type: "get",
+        type: "GET",
         success: function(data, textStatus, jQxhr){
             //do something with response data (data parameter)
             console.log(data);
@@ -22,10 +21,6 @@ function getAllMovies(){
         },
      });
 }
-$(document).ready(function(){
-    getAllMovies();
-});
-
 function createMovie() {
     var data = makeMovieObject();
     $(document).ready(function() {
@@ -87,7 +82,7 @@ function getMovieDetails(movieId){
     $(document).ready(function(){
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/api/movies' + movieId,
+            url: 'http://localhost:3000/api/movies push' + movieId,
             dataType: 'json'
         }).then(function(data){
             var movieImage = document.getElementById('movieImg');
@@ -101,4 +96,27 @@ function getMovieDetails(movieId){
             movieGenre.innerText = data['genre'];
     })
 })
+}
+function updateMovie() {
+    var movieToUpdate = {
+        "MovieId": parseInt(document.getElementById('hiddenMovieId').value),
+        "Title": document.getElementById('editTitle').value,
+        "Genre": document.getElementById('editGenre').value,
+        "Director": document.getElementById('editDirector').value,
+        "ImgPath": document.getElementById('editImg').value
+    };
+    $(document).ready(function() {
+        $.ajax({
+            url: 'http://localhost:3000/api/movies',
+            type: 'Put',
+            contentType: 'application/json',
+            data: JSON.stringify(movieToUpdate),
+            success: function(){
+                alert("Successfully updated movie!");
+                $(document.getElementById('edit-form').reset());
+            }
+            }).then(function() {
+                getAllMovies();
+            });
+    });
 }
