@@ -1,28 +1,21 @@
 'use strict'
-function getAllMovies(){
-    $.ajax({
-        url: 'http://localhost:3000/api/movies',
-        dataType:"json",
-        type: "GET",
-        success: function(data, textStatus, jQxhr){
-            //do something with response data (data parameter)
-            console.log(data);
-            for(let i = 0; i < data.length; i++){
-                $('#table').append('<tr>' 
-                                + '<td>' + data[i].title + '</td>'
-                                + '<td>' + data[i].director + '</td>'
-                                + '<td>' + data[i].genre + '</td>'
-                                + '</tr>');
-            }
- },
-         error: function(jQxhr, textStatus, errorThrown){
-                //if the request fails, the errorThrown parameter will contain details of the error 
-                console.log(errorThrown);
-        },
-     });
-}
+function getAllMovies() {
+    $(document).ready(function() {
+       $.ajax({
+           type: 'GET',
+           url: 'https://localhost:3000/api/movie',
+           dataType: 'json',
+           success: function(){
+               $(`#movieTableBody`).html(``);
+           }
+       }).then(function(data) {
+           addDataToTable(data);
+       
+       })
+    })
+   }
 function createMovie() {
-    var data = makeMovieObject();
+    var data = createMovieObject();
     $(document).ready(function() {
         $.ajax({
             url: 'http://localhost:3000/api/movies',
