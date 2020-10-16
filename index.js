@@ -25,31 +25,13 @@ app.get("/api/movies/:id", (req, res) => {
     res.send(movies);
 });
 
-// app.get("/api/movies/:genre", (req, res) => {
-//     let genre = req.params.body;
-//     let movies = repoContext.movies.findMovieByGenre(genre);
-//     res.send(movies);
-// });
-
-//app.get("/api/movies/:director", (req, res) => {
-// let director = req.params.body;
-// let movies = repoContext.movies.findMovieByDirector(director);
-// res.send(movies);
-//});
-
-//app.get("/api/movies/:title", (req, res) => {
-// let title = req.params.body;
-// let movies = repoContext.movies.findMovieByTitle(title);
-// res.send(movies);
-//});
-
 app.post("/api/movies/add", (req, res) => {
     let newMovie = req.body;
     let addedMovies = repoContext.movies.createMovie(newMovie);
     res.send(addedMovies);
 });
 
-app.put("/api/movies/", (req, res) => {
+app.put("/api/movies/:id", (req, res) => {
     let movieToUpdate = req.body;
     let updatedMovie = repoContext.movies.updateMovie(movieToUpdate);
     res.send(updatedMovie);
