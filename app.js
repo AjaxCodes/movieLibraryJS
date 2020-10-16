@@ -59,7 +59,7 @@ function editSingleMovie(movieId){
     $(document).ready(function(){
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/api/movies' + movieId,
+            url: 'http://localhost:3000/api/movies' + movie.Id,
             dataType: 'json'
         }).then(function(data){
 
@@ -101,7 +101,7 @@ function updateMovie() {
     $(document).ready(function() {
         $.ajax({
             url: 'http://localhost:3000/api/movies',
-            type: 'Put',
+            type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(movieToUpdate),
             success: function(){
