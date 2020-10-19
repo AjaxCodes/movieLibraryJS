@@ -1,38 +1,50 @@
 'use strict'
+
+$(function() {
+    getAllMovies();
+});
+
+
+
 function getAllMovies() {
-    $(document).ready(function() {
-       $.ajax({
-           type: 'GET',
-           url: 'https://localhost:3000/api/movie',
-           dataType: 'json',
-           success: function(){
-               $(`#movieTableBody`).html(``);
-           }
-       }).then(function(data) {
-           addDataToTable(data);
-       
-       })
+
+    $('#database').click(function() {
+        $('#movieTableBody').toggle();
+    });
+
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:3000/api/movies',
+        dataType: 'json',
+        success: function() {
+            $('#movieTableBody').html('');
+        }
+    }).then(function(data) {
+        addDataToTable(data);
+
     })
-   }
+}
+
 function createMovie() {
     var data = createMovieObject();
     $(document).ready(function() {
         $.ajax({
-            url: 'http://localhost:3000/api/movies',
+            url: 'http://localhost:3000/api/movies/add',
             type: 'POST',
             contentType: 'json',
             data: JSON.stringify(data),
-            success: function(){
+            success: function() {
                 alert("Successfully added movie!");
                 $(document.getElementById('add-form').reset());
             }
-            }).then(function() {
-                getAllMovies();
-            });
+        }).then(function() {
+            getAllMovies();
+        });
     });
 }
+
 function addDataToTable(data) {
-    for(let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
         $("#movieTableBody").append(`
         <tr><td>${data[i].title}</td>
         <td>${data[i].genre}</td>
@@ -42,42 +54,44 @@ function addDataToTable(data) {
         </tr>`)
     }
 }
-function createMovieObject(){
+
+function createMovieObject() {
     var movieData = {
         "Title": document.getElementById('newTitle').value,
         "Genre": document.getElementById('newGenre').value,
         "Director": document.getElementById('newDirector').value,
         "ImgPath": document.getElementById('newImg').value
     };
-    if (movieData.ImgPath == null)
-    {
+    if (movieData.ImgPath == null) {
         movieData.ImgPath = "";
     }
     return movieData;
 }
-function editSingleMovie(movieId){
-    $(document).ready(function(){
+
+function editSingleMovie(movieId) {
+    $(document).ready(function() {
         $.ajax({
             type: 'GET',
             url: 'http://localhost:3000/api/movies' + movieId,
             dataType: 'json'
-        }).then(function(data){
+        }).then(function(data) {
 
             $('#hiddenMovieId').val(data['movieId'])
             $('#editTitle').val(data['title']).text()
             $('#editGenre').val(data['genre']).text()
             $('#editDirector').val(data['director']).text()
             $('#editImg').val(data['imgPath']).text()
+        })
     })
-})
 }
-function getMovieDetails(movieId){
-    $(document).ready(function(){
+
+function getMovieDetails(movieId) {
+    $(document).ready(function() {
         $.ajax({
             type: 'GET',
             url: 'http://localhost:3000/api/movies push' + movieId,
             dataType: 'json'
-        }).then(function(data){
+        }).then(function(data) {
             var movieImage = document.getElementById('movieImg');
             var movieTitle = document.getElementById('movieTitle');
             var movieDirector = document.getElementById('movieDirector');
@@ -87,9 +101,10 @@ function getMovieDetails(movieId){
             movieTitle.innerText = data['title'];
             movieDirector.innerText = data['director'];
             movieGenre.innerText = data['genre'];
+        })
     })
-})
 }
+
 function updateMovie() {
     var movieToUpdate = {
         "MovieId": parseInt(document.getElementById('hiddenMovieId').value),
@@ -104,12 +119,12 @@ function updateMovie() {
             type: 'PUT',
             contentType: 'json',
             data: JSON.stringify(movieToUpdate),
-            success: function(){
+            success: function() {
                 alert("Successfully updated movie!");
                 $(document.getElementById('edit-form').reset());
             }
-            }).then(function() {
-                getAllMovies();
-            });
+        }).then(function() {
+            getAllMovies();
+        });
     });
 }

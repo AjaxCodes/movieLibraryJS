@@ -1,0 +1,9 @@
+footer {
+    margin: auto;
+    width: 20%;
+    padding-bottom: 40px;
+}
+
+#movieTableBody {
+    display: none;
+}
