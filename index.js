@@ -15,31 +15,31 @@ app.listen(3000, function() {
 });
 
 app.get("/api/movies", (req, res) => { // works with pair
-    let id = req.params.id;
-    let movies = repoContext.movies.findAllMovies(id);
+    var id = req.params.id;
+    var movies = repoContext.movies.findAllMovies(id);
     res.send(movies);
 });
 
 app.get("/api/movies/:id", (req, res) => { // gets movie by id
-    let id = req.params.id;
-    let movies = repoContext.movies.findMovieById(id);
+    var id = req.params.id;
+    var movies = repoContext.movies.findMovieById(id);
     res.send(movies);
 });
 
 app.post("/api/movies/add", (req, res) => { // adds movie to database
-    let newMovie = req.body;
-    let addedMovies = repoContext.movies.createMovie(newMovie);
+    var newMovie = req.body;
+    var addedMovies = repoContext.movies.createMovie(newMovie);
     res.send(addedMovies);
 });
 
 app.put("/api/movies/:id", (req, res) => { // updates list
-    let movieToUpdate = req.body;
-    let updatedMovie = repoContext.movies.updateMovie(movieToUpdate);
+    var movieToUpdate = req.body;
+    var updatedMovie = repoContext.movies.updateMovie(movieToUpdate);
     res.send(updatedMovie);
 });
 
 app.delete("/api/movies/:id", (req, res) => { // deletes movies from database
-    let id = req.params.id;
-    let updatedDataSet = repoContext.movies.deleteMovie(id);
+    var id = req.params.id;
+    var updatedDataSet = repoContext.movies.deleteMovie(id);
     res.send(updatedDataSet);
 });

@@ -1,14 +1,30 @@
 'use strict'
 
-$(function() {
-    getAllMovies();
-    createMovie();
-    addDataToTable(data);
-    createMovieObject();
-    editSingleMovie(movieId);
-    getMovieDetails(movieId);
-    updateMovie();
-});
+$(document).ready(function() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:3000/api/movie',
+        dataType: 'json',
+        success: function(){
+            $(`#movieTableBody`).html(``);
+        }
+    }).then(function(data) {
+        addDataToTable(data);
+    
+    })
+ })
+ function addDataToTable(data) {
+    for (let i = 0; i < data.length; i++) {
+        $("#movieTableBody").append(`
+        <tr><td>${data[i].title}</td>
+        <td>${data[i].genre}</td>
+        <td>${data[i].director}</td>
+        <td><button type="submit" class="btn btn-outline-warning"onclick="editSingleMovie(${data[i].movieId})">Edit</button>
+        <td><button type="submit" class="btn btn-outline-warning"onclick="getMovieDetails(${data[i].movieId})">Details</button></tr>
+        </tr>`)
+    }
+}
+
 
 function getAllMovies() { // works 
     $('#database').click(function() {
@@ -26,13 +42,14 @@ function getAllMovies() { // works
     })
 }
 
+
 function createMovie() {
     var data = createMovieObject();
     $(document).ready(function() {
         $.ajax({
             url: 'http://localhost:3000/api/movies/add',
             type: 'POST',
-            contentType: 'json',
+            contentType: 'application/json',
             data: JSON.stringify(data),
             success: function() {
                 alert("Successfully added movie!");
@@ -43,19 +60,6 @@ function createMovie() {
         });
     });
 }
-
-function addDataToTable(data) {
-    for (let i = 0; i < data.length; i++) {
-        $("#movieTableBody").append(`
-        <tr><td>${data[i].title}</td>
-        <td>${data[i].genre}</td>
-        <td>${data[i].director}</td>
-        <td><button type="submit" class="btn btn-outline-warning"onclick="editSingleMovie(${data[i].movieId})">Edit</button>
-        <td><button type="submit" class="btn btn-outline-warning"onclick="getMovieDetails(${data[i].movieId})">Details</button></tr>
-        </tr>`)
-    }
-}
-
 function createMovieObject() {
     var movieData = {
         "Title": document.getElementById('newTitle').value,
@@ -90,7 +94,7 @@ function getMovieDetails(movieId) {
     $(document).ready(function() {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/api/movies push' + movieId,
+            url: 'http://localhost:3000/api/movies' + movieId,
             dataType: 'json'
         }).then(function(data) {
             var movieImage = document.getElementById('movieImg');
@@ -118,7 +122,7 @@ function updateMovie() {
         $.ajax({
             url: 'http://localhost:3000/api/movies',
             type: 'PUT',
-            contentType: 'json',
+            contentType: 'appliocation/json',
             data: JSON.stringify(movieToUpdate),
             success: function() {
                 alert("Successfully updated movie!");
