@@ -77,24 +77,13 @@ function getMovieDetails(movieId) {
     });
 
     $.ajax({
-            type: 'GET',
-            url: 'http://localhost:3000/api/movies',
-            dataType: 'json',
-            success: function(i, data) {
-                console.log("this button is working");
-            }
-        }) //.then(function(data) {
-        //     var movieImg = document.getElementById('movieImg');
-        //     var movieTitle = document.getElementById('movieTitle');
-        //     var movieDirector = document.getElementById('movieDirector');
-        //     var movieGenre = document.getElementById('movieGenre');
-
-    //     movieTitle.innerText = data['title'];
-    //     movieGenre.innerText = data['genre'];
-    //     movieDirector.innerText = data['director'];
-    //     movieImg.src = data['imgPath'];
-
-    //})
+        type: 'GET',
+        url: 'http://localhost:3000/api/movies',
+        dataType: 'json',
+        success: function(i, data) {
+            console.log("this button is working");
+        }
+    });
 
 }
 
