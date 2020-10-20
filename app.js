@@ -1,29 +1,23 @@
 'use strict'
 
-$(function() {
-    getAllMovies();
-    createMovie();
-    addDataToTable(data);
-    createMovieObject();
-    editSingleMovie(movieId);
-    getMovieDetails(movieId);
-    updateMovie();
-});
-
 function getAllMovies() { // works 
+
     $('#database').click(function() {
         $('#movieTableBody').toggle();
     });
+
     $.ajax({
         type: 'GET',
         url: 'http://localhost:3000/api/movies',
         dataType: 'json',
-        success: function() {
+        success: function(data) {
             $('#movieTableBody').html('');
-        }
-    }).then(function(data) {
-        addDataToTable(data);
-    })
+            addDataToTable(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        },
+    });
 }
 
 function createMovie() {
@@ -34,42 +28,28 @@ function createMovie() {
     var $imgPath = $('#imgPath');
 
     var addMovie = {
-
         "title": $title.val(),
         "genre": $genre.val(),
         "director": $director.val(),
         "imgPath": $imgPath.val(),
     };
 
-    $('#add-movie').click(function() {
 
-    });
 
     $.ajax({
         url: 'http://localhost:3000/api/movies/add',
         type: 'POST',
         dataType: 'json',
-        data: {
-            "title": 'incredibles 2',
-            "genre": 'action',
-            "director": 'aaa',
-        },
-        success: function(i, newMovie) {
-            $('#add-movie').append('<tr>',
-                '<td>' + newMovie.title + '</td>',
-                '<td>' + newMovie.genre + '</td>',
-                '<td>' + newMovie.director + '</td>',
-                '</tr>', );
-
-            alert("Successfully added movie!");
-            // $(document.getElementById('add-form').reset());
+        data: addMovie,
+        success: function(data) {
+            console.log("Added!");
+            console.log(data);
+            getAllMovies();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(errorThrown);
         }
 
-    }).then(function() {
-        getAllMovies();
     });
 }
 
@@ -80,61 +60,42 @@ function addDataToTable(data) {
         <tr><td>${data[i].title}</td>
         <td>${data[i].genre}</td>
         <td>${data[i].director}</td>
-        <td><button type="submit" class="btn btn-outline-warning"onclick="editSingleMovie(${data[i].movieId})">Edit</button>
-        <td><button type="submit" class="btn btn-outline-warning"onclick="getMovieDetails(${data[i].movieId})">Details</button></tr>
-        </tr>`)
-    }
+        <td><button type="submit" class="btn btn-outline-warning" onclick="editSingleMovie('${data[i].id}', '${data[i].title}', '${data[i].genre}','${data[i].director}' )">Edit</button>
+        <td><button type="submit" class="btn btn-outline-warning" onclick="getMovieDetails()" id="getMovieId">Details</button></tr>
+        </tr>`);
+    };
 }
 
-
-// function createMovieObject() {
-//     var movieData = {
-//         title: $newTitle.val(),
-//         genre: $newGenre.val(),
-//         director: $newDirector.val(),
-//         imgPath: $newImg.val(),
-//     };
-//     if (movieData.ImgPath == null) {
-//         movieData.ImgPath = "";
-//     }
-//     return movieData;
-// }
-
-function editSingleMovie(movieId) {
-    $(document).ready(function() {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:3000/api/movies' + movieId,
-            dataType: 'json'
-        }).then(function(data) {
-
-            $('#hiddenMovieId').val(data['movieId'])
-            $('#editTitle').val(data['title']).text()
-            $('#editGenre').val(data['genre']).text()
-            $('#editDirector').val(data['director']).text()
-            $('#editImg').val(data['imgPath']).text()
-        })
-    })
+function editSingleMovie(id, title, genre, director) {
+    console.log(title);
 }
 
 function getMovieDetails(movieId) {
-    $(document).ready(function() {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:3000/api/movies push' + movieId,
-            dataType: 'json'
-        }).then(function(data) {
-            var movieImage = document.getElementById('movieImg');
-            var movieTitle = document.getElementById('movieTitle');
-            var movieDirector = document.getElementById('movieDirector');
-            var movieGenre = document.getElementById('movieGenre');
 
-            movieImage.src = data['imgPath'];
-            movieTitle.innerText = data['title'];
-            movieDirector.innerText = data['director'];
-            movieGenre.innerText = data['genre'];
-        })
-    })
+    $('#getMovieId').click(function() {
+
+    });
+
+    $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/movies',
+            dataType: 'json',
+            success: function(i, data) {
+                console.log("this button is working");
+            }
+        }) //.then(function(data) {
+        //     var movieImg = document.getElementById('movieImg');
+        //     var movieTitle = document.getElementById('movieTitle');
+        //     var movieDirector = document.getElementById('movieDirector');
+        //     var movieGenre = document.getElementById('movieGenre');
+
+    //     movieTitle.innerText = data['title'];
+    //     movieGenre.innerText = data['genre'];
+    //     movieDirector.innerText = data['director'];
+    //     movieImg.src = data['imgPath'];
+
+    //})
+
 }
 
 function updateMovie() {
