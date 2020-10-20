@@ -2,7 +2,7 @@
 $(document).ready(function() {
     $.ajax({
         type: 'GET',
-        url: 'https://localhost:44325/api/movie',
+        url: 'https://localhost:3000/api/movie',
         dataType: 'json',
         success: function(){
             $(`#movieTableBody`).html(``);
@@ -27,7 +27,7 @@ function createMovie() {
     var data = makeMovieObject();
     $(document).ready(function() {
         $.ajax({
-            url: 'https://localhost:44325/api/movie',
+            url: 'https://localhost:3000/api/movie',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -57,7 +57,7 @@ function editSingleMovie(movieId){
     $(document).ready(function(){
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44325/api/movie/' + movieId,
+            url: 'https://localhost:3000/api/movie/' + movieId,
             dataType: 'json'
         }).then(function(data){
 
@@ -73,7 +73,7 @@ function getMovieDetails(movieId){
     $(document).ready(function(){
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44325/api/movie/' + movieId,
+            url: 'https://localhost:3000/api/movie/' + movieId,
             dataType: 'json'
         }).then(function(data){
             var movieImage = document.getElementById('movieImg');
@@ -98,7 +98,7 @@ function updateMovie() {
     };
     $(document).ready(function() {
         $.ajax({
-            url: 'https://localhost:44325/api/movie',
+            url: 'https://localhost:3000/api/movie',
             type: 'Put',
             contentType: 'application/json',
             data: JSON.stringify(movieToUpdate),
