@@ -63,9 +63,7 @@
     <br>
     <form style='float: left; padding: 60px' id="add-form">
         <h2>
-            <p>
-                Add Movie To Database:
-            </p>
+            Add Movie To Database:
         </h2>
         <div class="form-group">
             <label class="col-form-label" for="newTitle">Enter Movie Title:</label>
@@ -83,14 +81,12 @@
             <label class="col-form-label" for="newImg">Enter Movie Image URL:</label>
             <input class="form-control form-control-lg" type="text" placeholder="Enter the URL of Movie Image" id="newImg">
         </div>
-        <button type="button" class="btn btn-outline-warning" onclick="createMovie()">Add Movie to Database</button>
+        <button type="button" class="btn btn-outline-warning" onclick="createMovie()" id="add-movie">Add Movie to Database</button>
     </form>
 
     <form id="edit-form" style='float: right; padding: 60px'>
         <h2>
-            <p>
-                Edit Movie In Database:
-            </p>
+            Edit Movie In Database:
         </h2>
         <div class="form-group">
             <input id="hiddenMovieId" name="hiddenMovieId" type="hidden" />

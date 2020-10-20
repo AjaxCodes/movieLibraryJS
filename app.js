@@ -2,15 +2,12 @@
 
 $(function() {
     getAllMovies();
+    createMovie();
 });
 
 
 
 function getAllMovies() {
-
-    $('#database').click(function() {
-        $('#movieTableBody').toggle();
-    });
 
     $.ajax({
         type: 'GET',
@@ -21,29 +18,62 @@ function getAllMovies() {
         }
     }).then(function(data) {
         addDataToTable(data);
+    });
 
-    })
+    $('#database').click(function() {
+        $('#movieTableBody').toggle();
+    });
 }
 
 function createMovie() {
-    var data = createMovieObject();
-    $(document).ready(function() {
-        $.ajax({
-            url: 'http://localhost:3000/api/movies/add',
-            type: 'POST',
-            contentType: 'json',
-            data: JSON.stringify(data),
-            success: function() {
-                alert("Successfully added movie!");
-                $(document.getElementById('add-form').reset());
-            }
-        }).then(function() {
-            getAllMovies();
-        });
+
+    var $title = $('#newTitle');
+    var $genre = $('#newGenre');
+    var $director = $('#newDirector');
+    var $imgPath = $('#imgPath');
+
+    var addMovie = {
+
+        "title": $title.val(),
+        "genre": $genre.val(),
+        "director": $director.val(),
+        "imgPath": $imgPath.val(),
+    };
+
+    $('#add-movie').click(function() {
+
+    });
+
+    $.ajax({
+        url: 'http://localhost:3000/api/movies/add',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            "title": 'incredibles 2',
+            "genre": 'action',
+            "director": 'aaa',
+        },
+        success: function(i, newMovie) {
+            $('#add-movie').append('<tr>',
+                '<td>' + newMovie.title + '</td>',
+                '<td>' + newMovie.genre + '</td>',
+                '<td>' + newMovie.director + '</td>',
+                '</tr>', );
+
+            alert("Successfully added movie!");
+            // $(document.getElementById('add-form').reset());
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+
+    }).then(function() {
+        getAllMovies();
     });
 }
 
 function addDataToTable(data) {
+
     for (let i = 0; i < data.length; i++) {
         $("#movieTableBody").append(`
         <tr><td>${data[i].title}</td>
@@ -55,18 +85,19 @@ function addDataToTable(data) {
     }
 }
 
-function createMovieObject() {
-    var movieData = {
-        "Title": document.getElementById('newTitle').value,
-        "Genre": document.getElementById('newGenre').value,
-        "Director": document.getElementById('newDirector').value,
-        "ImgPath": document.getElementById('newImg').value
-    };
-    if (movieData.ImgPath == null) {
-        movieData.ImgPath = "";
-    }
-    return movieData;
-}
+
+// function createMovieObject() {
+//     var movieData = {
+//         title: $newTitle.val(),
+//         genre: $newGenre.val(),
+//         director: $newDirector.val(),
+//         imgPath: $newImg.val(),
+//     };
+//     if (movieData.ImgPath == null) {
+//         movieData.ImgPath = "";
+//     }
+//     return movieData;
+// }
 
 function editSingleMovie(movieId) {
     $(document).ready(function() {
