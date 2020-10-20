@@ -1,4 +1,5 @@
 'use strict'
+<<<<<<< HEAD
 
 function getAllMovies() { // works 
 
@@ -6,9 +7,12 @@ function getAllMovies() { // works
         $('#movieTableBody').toggle();
     });
 
+=======
+function getAllMovies(){
+>>>>>>> 5230837d2655f72a3b54acb45b8a93e657ca4996
     $.ajax({
-        type: 'GET',
         url: 'http://localhost:3000/api/movies',
+<<<<<<< HEAD
         dataType: 'json',
         success: function(data) {
             $('#movieTableBody').html('');
@@ -64,8 +68,33 @@ function addDataToTable(data) {
         <td><button type="submit" class="btn btn-outline-warning" onclick="getMovieDetails()" id="getMovieId">Details</button></tr>
         </tr>`);
     };
+=======
+        dataType:"json",
+        type: "get",
+        success: function(data, textStatus, jQxhr){
+            //do something with response data (data parameter)
+            console.log(data);
+            for(let i = 0; i < data.length; i++){
+                $('#table').append('<tr>' 
+                                + '<td>' + data[i].title + '</td>'
+                                + '<td>' + data[i].genre + '</td>'
+                                + '<td>' + data[i].director + '</td>'
+                                +'</tr>');
+            }
+ },
+         error: function(jQxhr, textStatus, errorThrown){
+                //if the request fails, the errorThrown parameter will contain details of the error 
+                console.log(errorThrown);
+        },
+     });
+>>>>>>> 5230837d2655f72a3b54acb45b8a93e657ca4996
 }
+$(document).ready(function(){
+    getAllMovies();
+});
+getAllMovies();
 
+<<<<<<< HEAD
 function editSingleMovie(id, title, genre, director) {
     console.log(title);
 }
@@ -110,3 +139,8 @@ function updateMovie() {
         });
     });
 }
+=======
+    
+
+    
+>>>>>>> 5230837d2655f72a3b54acb45b8a93e657ca4996

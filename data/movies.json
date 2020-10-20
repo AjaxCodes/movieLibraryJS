@@ -26,13 +26,25 @@
   {
     "id": 5,
     "title": "Die Hard 2",
-    "director": "John McTiernan",
+    "director": "Renny Harlin",
     "genre": "Action"
   },
   {
     "id": 6,
+<<<<<<< HEAD
     "title": "Ground Hog Day",
     "director": "David Lagrange",
     "genre": "Best Movie"
+=======
+    "title": "Black Panther",
+    "director": "Ryan Coogler",
+    "genre": "Action"
+  },
+  {
+    "id": 7,
+    "title": "Captain America : The First Avenger",
+    "director": "Joe Johnston",
+    "genre": "Action"
+>>>>>>> 5230837d2655f72a3b54acb45b8a93e657ca4996
   }
-]
+] 
