@@ -20,123 +20,15 @@
             </p>
     </div>
 
-    <div class="col-md-8">
-        <button type="button" onclick="getAllMovies()" class="btn btn-outline-warning" id="database">check out our database</button>
-        <br>
-        <br>
-    </div>
-
-    <div class="row" style="padding: 20px">
-        <div class="col-md-8">
-            <table class="table table-success">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Genre</th>
-                        <th>Director's Name</th>
-                        <th>Edit Movie (see form below)</th>
-                        <th>View Details</th>
-                    </tr>
-                </thead>
-                <tbody class="table table-warning" id="movieTableBody">
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <h3 class="card-header">Movie Details</h3>
-                <div class="card-body">
-                    <h5 class="card-title" id="movieTitle">Movie Title</h5>
-                    <h6 class="card-subtitle text-muted" id="movieDirector">Director</h6>
-                    <h6 class="card-subtitle text-muted" id="movieGenre">Genre</h6>
-                </div>
-                <img style="height: 100%; width: 100%; display: block;" id="movieImg" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                    alt="Card image">
-                <div class="card-body">
-                    <p class="card-text"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <form style='float: left; padding: 60px' id="add-form">
-        <h2>
-            Add Movie To Database:
-        </h2>
-        <div class="form-group">
-            <label class="col-form-label" for="newTitle">Enter Movie Title:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Movie Title" id="newTitle">
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="newGenre">Enter Movie Genre:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Movie Genre" id="newGenre">
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="newDirector">Enter Movie Director:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Movie Director" id="newDirector">
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="newImg">Enter Movie Image URL:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Enter the URL of Movie Image" id="newImg">
-        </div>
-        <button type="button" class="btn btn-outline-warning" onclick="createMovie()" id="add-movie">Add Movie to Database</button>
-    </form>
-
-    <form id="edit-form" style='float: right; padding: 60px'>
-        <h2>
-            Edit Movie In Database:
-        </h2>
-        <div class="form-group">
-            <input id="hiddenMovieId" name="hiddenMovieId" type="hidden" />
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="editTitle">Edit Movie Title:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Movie Title" id="editTitle">
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="editGenre">Edit Movie Genre:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Movie Genre" id="editGenre">
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="editDirector">Edit Movie Director:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Movie Director" id="editDirector">
-        </div>
-        <div class="form-group">
-            <label class="col-form-label" for="editImg">Edit Movie Image URL:</label>
-            <input class="form-control form-control-lg" type="text" placeholder="Image URL" id="editImg">
-        </div>
-        <button type="button" class="btn btn-outline-warning" onclick="updateMovie()">Update this Movie in Database:</button>
-    </form>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <center><table id="table">
+        <tr>
+            <th id="title">Movie</th>
+            <th id="artist">Director</th>
+            <th id="genre">Genre</th>
+            
+        </tr>
+    </table>
+     </center>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

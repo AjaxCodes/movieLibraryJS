@@ -26,49 +26,19 @@
   {
     "id": 5,
     "title": "Die Hard 2",
-    "director": "John McTiernan",
+    "director": "Renny Harlin",
     "genre": "Action"
   },
   {
     "id": 6,
-    "title": "",
-    "director": "",
-    "genre": ""
+    "title": "Black Panther",
+    "director": "Ryan Coogler",
+    "genre": "Action"
   },
   {
     "id": 7,
-    "title": "",
-    "director": "",
-    "genre": ""
-  },
-  {
-    "id": 8,
-    "title": "a",
-    "director": "a",
-    "genre": "a"
-  },
-  {
-    "id": 9,
-    "title": "incredibles 2",
-    "director": "aaa",
-    "genre": "action"
-  },
-  {
-    "id": 10,
-    "title": "incredibles 2",
-    "director": "aaa",
-    "genre": "action"
-  },
-  {
-    "id": 11,
-    "title": "incredibles 2",
-    "director": "aaa",
-    "genre": "action"
-  },
-  {
-    "id": 12,
-    "title": "incredibles 2",
-    "director": "aaa",
-    "genre": "action"
+    "title": "Captain America : The First Avenger",
+    "director": "Joe Johnston",
+    "genre": "Action"
   }
-]
+] 
