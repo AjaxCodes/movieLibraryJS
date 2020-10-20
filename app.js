@@ -3,12 +3,26 @@
 $(function() {
     getAllMovies();
     createMovie();
+<<<<<<< HEAD
 });
 
 
 
 function getAllMovies() {
 
+=======
+    addDataToTable(data);
+    createMovieObject();
+    editSingleMovie(movieId);
+    getMovieDetails(movieId);
+    updateMovie();
+});
+
+function getAllMovies() { // works 
+    $('#database').click(function() {
+        $('#movieTableBody').toggle();
+    });
+>>>>>>> 44e5a9f9c01a2f1395af71f052b3556955387b91
     $.ajax({
         type: 'GET',
         url: 'http://localhost:3000/api/movies',
@@ -18,11 +32,15 @@ function getAllMovies() {
         }
     }).then(function(data) {
         addDataToTable(data);
+<<<<<<< HEAD
     });
 
     $('#database').click(function() {
         $('#movieTableBody').toggle();
     });
+=======
+    })
+>>>>>>> 44e5a9f9c01a2f1395af71f052b3556955387b91
 }
 
 function createMovie() {
@@ -79,8 +97,8 @@ function addDataToTable(data) {
         <tr><td>${data[i].title}</td>
         <td>${data[i].genre}</td>
         <td>${data[i].director}</td>
-        <td><button type="submit" class="btn btn-outline-danger"onclick="editSingleMovie(${data[i].movieId})">Edit</button>
-        <td><button type="submit" class="btn btn-outline-danger"onclick="getMovieDetails(${data[i].movieId})">Details</button></tr>
+        <td><button type="submit" class="btn btn-outline-warning"onclick="editSingleMovie(${data[i].movieId})">Edit</button>
+        <td><button type="submit" class="btn btn-outline-warning"onclick="getMovieDetails(${data[i].movieId})">Details</button></tr>
         </tr>`)
     }
 }
