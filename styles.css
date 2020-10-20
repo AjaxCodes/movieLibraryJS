@@ -7,3 +7,12 @@ footer {
 #movieTableBody {
     display: none;
 }
+
+#movieTitle {
+    margin: 0;
+    padding: 0;
+}
+
+h6 {
+    padding-top: 20px;
+}
