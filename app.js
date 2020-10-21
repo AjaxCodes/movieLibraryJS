@@ -75,10 +75,10 @@ function editSingleMovie(id, title, genre, director) {
 
 function updateMovie() {
     var movieToUpdate = {
-        "Id": parseInt(document.getElementById('#hiddenMovieId').value()),
-        "Title": document.getElementById('#input').value(),
-        "Genre": document.getElementById('#input').value(),
-        "Director": document.getElementById('#input').value()
+        
+        "Title": document.getElementById('#title').value(),
+        "Genre": document.getElementById('#genre').value(),
+        "Director": document.getElementById('#director').value()
         
     };
     $(document).ready(function() {
